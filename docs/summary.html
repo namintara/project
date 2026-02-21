@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>สรุปผล - Geo-Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-container">
+        <h1>ภารกิจเสร็จสิ้น!</h1>
+        <div class="score-display"><span id="final-score">0</span> / 100</div>
+        <h2 id="final-rank">กำลังประมวลผล...</h2>
+        <br>
+        <a href="Index.html" class="btn-primary">เล่นใหม่อีกครั้ง</a>
+    </div>
+
+    <script>
+        let finalScore = parseInt(localStorage.getItem('geoTotalScore')) || 0;
+        document.getElementById('final-score').innerText = finalScore;
+        let rank = "นักสำรวจมือใหม่";
+        if(finalScore >= 90) rank = "🏆 คุณเก่งสุดยอด!";
+        else if(finalScore >= 70) rank = "🌟 เก่งมากกกก";
+        else if(finalScore >= 50) rank = "👍 พยายามอีกนิดนะ";
+        document.getElementById('final-rank').innerText = rank;
+    </script>
+</body>
+</html>
