@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Mission 1 - Geo-Analyst</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+<body>
+
+<header>
+    <div style="font-weight:bold; font-size:1.1rem;"><i class="fas fa-globe-asia"></i> สำรวจแผนที่กัน </div>
+    <div class="score-board">คะแนนรวม: <span id="total-score">0</span></div>
+</header>
+
+<div class="container">
+    <div id="map"></div>
+    <div class="map-controls">
+        <button class="map-btn active" onclick="switchMap('street', this)"><i class="fas fa-road"></i> แผนที่ถนน</button>
+        <button class="map-btn" onclick="switchMap('topo', this)"><i class="fas fa-mountain"></i> แผนที่ความสูง</button>
+        <button class="map-btn" onclick="switchMap('sat', this)"><i class="fas fa-satellite"></i> แผนที่ดาวเทียม</button>
+    </div>
+
+    <div class="mission-panel">
+        <div class="m-header">
+            <div class="m-title" id="m-title">Loading...</div>
+            <div class="current-score">ด่านนี้: <span id="level-score">10</span> pt</div>
+        </div>
+        <div class="m-desc" id="m-desc">...</div>
+        
+        <div class="hints">
+            <div style="font-weight:bold; margin-bottom:5px;">คำใบ้ภารกิจ:</div>
+            <div id="hint-list"></div>
+        </div>
+
+        <button class="next-btn" id="btn-next">ไปด่านต่อไป ▶</button> 
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // ------------------------------------------------
+    // ** จุดที่ต้องเปลี่ยนในแต่ละหน้า (level_1 ถึง 10) **
+    const LEVEL_INDEX = 0; // ด่าน 1 คือ index 0
+    const NEXT_PAGE = 'level_2.html'; // หน้าต่อไป
+    // ------------------------------------------------
+</script>
+<script src="game.js"></script>
+</html>
