@@ -1,26 +1,227 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>วิธีเล่น - Geo-Analyst</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>วิธีเล่น - Geo-Analyst</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Sarabun',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1c1c1c);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+    padding:20px;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.container{
+    width:100%;
+    max-width:1000px;
+    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:25px;
+    padding:50px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+    color:white;
+    animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    text-align:center;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
+
+.subtitle{
+    text-align:center;
+    opacity:0.85;
+    margin-bottom:40px;
+    font-weight:300;
+}
+
+.rules{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.rule-card{
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.15);
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.rule-card::before{
+    content:"";
+    position:absolute;
+    width:120%;
+    height:120%;
+    background:radial-gradient(circle at top left,rgba(255,255,255,0.2),transparent);
+    top:-20%;
+    left:-20%;
+}
+
+.rule-card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 20px 30px rgba(0,0,0,0.3);
+}
+
+.rule-card i{
+    font-size:28px;
+    margin-bottom:12px;
+    color:#00e5ff;
+}
+
+.rule-card h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.rule-card p{
+    font-size:14px;
+    opacity:0.9;
+    line-height:1.6;
+}
+
+.score-box{
+    text-align:center;
+    padding:18px;
+    border-radius:15px;
+    background:linear-gradient(90deg,#00c6ff,#0072ff);
+    font-weight:600;
+    margin-bottom:35px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.button-group{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 35px;
+    border-radius:50px;
+    font-weight:600;
+    text-decoration:none;
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,#00c6ff,#0072ff);
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:scale(1.08);
+    box-shadow:0 10px 25px rgba(0,114,255,0.6);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,0.2);
+    color:white;
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,0.35);
+}
+
+@media(max-width:600px){
+    .container{
+        padding:30px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="page-container">
-        <h1><i class="fas fa-map-marked-alt"></i> วิธีการเล่น Geo-Analyst</h1>
-        <div class="rule-box">
-            <ul>
-                <li><b>รับภารกิจ:</b> อ่านคำใบ้และเป้าหมายในแผงภารกิจ (มุมซ้ายล่าง)</li>
-                <li><b>ค้นหาตำแหน่ง:</b> ซูมเข้า-ออก หรือเลื่อนแผนที่</li>
-                <li><b>ใช้เครื่องมือ:</b> สลับ แผนที่ถนน, ความสูง, ดาวเทียม (มุมขวาบน)</li>
-                <li><b>ตอบคำถาม:</b> คลิกซ้ายบนแผนที่ในจุดที่คุณคิดว่าใช่</li>
-                <li><b>การนับคะแนน:</b> ตอบถูกรับ 10 คะแนน, ตอบผิดหัก 1 คะแนน/ครั้ง</li>
-            </ul>
+
+<div class="container">
+
+    <h1><i class="fas fa-globe-asia"></i> วิธีการเล่น Geo-Analyst</h1>
+    <p class="subtitle">
+        เกมฝึกวิเคราะห์เชิงพื้นที่ผ่านแผนที่จริง ใช้เหตุผล ความแม่นยำ และการสังเกตอย่างมืออาชีพ
+    </p>
+
+    <div class="rules">
+
+        <div class="rule-card">
+            <i class="fas fa-bullseye"></i>
+            <h3>รับภารกิจ</h3>
+            <p>อ่านคำใบ้จากแผงภารกิจ ทำความเข้าใจเงื่อนไขและเป้าหมายก่อนเริ่มวิเคราะห์</p>
         </div>
-        <a href="#" class="btn-primary" onclick="localStorage.setItem('geoTotalScore', 0); window.location.href = 'Level_1.html';"><i class="fas fa-play"></i> เริ่มเล่นเกมกันเลย</a>
-        <a href="index.html" class="btn-secondary">กลับหน้าหลัก</a>
+
+        <div class="rule-card">
+            <i class="fas fa-map"></i>
+            <h3>สำรวจพื้นที่</h3>
+            <p>เลื่อนและซูมแผนที่ วิเคราะห์ภูมิประเทศ เส้นทาง และบริบทพื้นที่</p>
+        </div>
+
+        <div class="rule-card">
+            <i class="fas fa-layer-group"></i>
+            <h3>ใช้เครื่องมือ</h3>
+            <p>สลับมุมมองแผนที่ถนน ความสูง และภาพถ่ายดาวเทียมเพื่อเพิ่มความแม่นยำ</p>
+        </div>
+
+        <div class="rule-card">
+            <i class="fas fa-mouse-pointer"></i>
+            <h3>เลือกคำตอบ</h3>
+            <p>คลิกตำแหน่งที่คิดว่าใช่ที่สุด ยิ่งแม่นยำตั้งแต่ครั้งแรกยิ่งได้คะแนนสูง</p>
+        </div>
+
     </div>
+
+    <div class="score-box">
+        🏆 ตอบถูก +10 คะแนน | ตอบผิด -1 คะแนนต่อครั้ง
+    </div>
+
+    <div class="button-group">
+        <a href="#" class="btn btn-primary"
+           onclick="localStorage.setItem('geoTotalScore',0); window.location.href='Level_1.html';">
+           <i class="fas fa-play"></i> เริ่มเล่นเกม
+        </a>
+
+        <a href="index.html" class="btn btn-secondary">
+            กลับหน้าหลัก
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
